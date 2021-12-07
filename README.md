@@ -3,7 +3,8 @@ COSC10 Problem Set 1: Region Finding based on Color
 
 A webcam-based painting program in which some portion of the image (say your hand, or a marker tip) acts as a "paintbrush". The core computational problem is to identify the paintbursh in the webcam image. Here we base the recognition solely on color, so it should have a fairly uniform and distinct color. 
 
-## Brief description of implementation & parameter choices:
+## Brief description of implementation & parameter choices
+
 For color similarity testing purposes (in colorMatch() of RegionFinder.java), I implemented the Euclidean distance method instead of the method comparing the absolute values of the differences between color channels. I preferred the Euclidean method because it could fully recognize the solid yellow thunderbolt (at the left) in “shapes.jpg” while the other method left multiple spots of yellow uncolored. It also identified the other solid colored regions in the static test cases and made sure to not identify the regions with gradients because they were darker than the colors we were trying to identify.
 For this method, I used a maxColorDiff value of 720 because I wanted the value to be high enough so that it could easily recognize slightly different shades of the same color when using CamPaint, since the lighting of the room and webcam adjustments to light exposure altered color so much. Any value higher than this colors too much of the pavement in “baker.jpg” when we try identifying the bricks (another static test case). So, the value of 720 was a compromise between both static and streamed cases.
 I left the minRegion value of 50 the same because, at this value, my code would only recognize reasonably sized regions, ensuring that regions too small would not be considered.
